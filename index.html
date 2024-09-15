@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senty</title>
+	<link rel="icon" href="ressources/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <!-- NOTIFICATIONS -->
+    <div id="upload_notification">
+        <p id="upload_notification_text">15024</p>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-logo">
+            <img src="ressources/logo_white.png" alt="Logo de Senty">
+            <p>Senty</p>
+        </div>
+        <div class="header-links">
+            <a href="#about">A propos</a>
+            <a href="#sents">Mes sents</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- LANDING -->
+     <div class="landing">
+        <div class="download">
+            <p class="download-title">Récupérer un fichier</p>
+            <input type="text" id="code" maxlength="5" placeholder="14159" autocomplete="off">
+            <button class="white-btn" id="download_btn">Rechercher ce code</button>
+        </div>
+        <div id="upload">
+            <img src="ressources/folder.png" alt="Image d'un dossier attendant un fichier">
+            <p>Glisser un fichier ici</p>
+            <input type="file" id="fileInput" style="display: none;">
+        </div>
+     </div>
+
+     <!-- ABOUT -->
+    <div class="about" id="about">
+        <h2>A propos</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel enim quis lorem lacinia varius. Nulla magna tellus, condimentum at ante in, pretium posuere mauris. Ut varius eros quis lacus dapibus commodo. Ut ullamcorper, nulla eu mattis iaculis, sapien nunc volutpat urna, vel commodo lacus eros lacinia dolor. Donec et fringilla tortor. Phasellus ligula ex, vehicula at tortor sit amet, auctor porta sem. Morbi convallis scelerisque sodales. Cras gravida dolor tellus, id mattis quam laoreet eget. Aliquam quis suscipit tellus, in viverra sapien. Nullam consequat feugiat neque, ac fringilla est. Phasellus finibus, nulla vitae venenatis rutrum, lacus dui dapibus sem, tempor dictum libero dolor eget est. Pellentesque ut porttitor nunc.
+        </p>
+    </div>
+
+    <!-- CONTACT -->
+     <footer id="contact">
+        <p>Gémino Ruffault--Ravenel</p>
+        <a href="https://gemino.dev">gemino.dev</a>
+     </footer>
+
+    <!-- SCRIPT -->
+     <script type="module" src="scripts/app.js"></script>
+
+</body>
+</html>
