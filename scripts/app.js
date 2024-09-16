@@ -1,5 +1,6 @@
 import { uploadFile } from './upload.js';
 import { downloadFile } from './download.js';
+import { saveSents, getSents } from './sents.js';
 
 // Handle file uploader
 const uploadDiv = document.getElementById('upload');
@@ -46,11 +47,12 @@ async function startUpload(file) {
 
     // Sucess
     if (result.success){
+        saveSents(file.name, result.code.toString().toUpperCase());
         upload_notification.style.backgroundColor = '';
         upload_notification_text.textContent = result.code.toString().toUpperCase();
     } else {
         upload_notification.style.backgroundColor = 'darkred';
-        upload_notification_text.textContent = 'Fichier trop volumineu';
+        upload_notification_text.textContent = result.message;
     }
 
     // Show animation
@@ -61,9 +63,12 @@ async function startUpload(file) {
         upload_notification.className = '';
     }, 10000);
 
+    // Update "my sents" display
+    updateSentsDisplay();
+
 }
 
-// Notificatino clicked
+// Notification clicked
 upload_notification.onclick = ()=>{
     upload_notification.classList = '';
     copyTextToClipboard(upload_notification_text.textContent);
@@ -103,4 +108,58 @@ download_btn.onclick = async ()=>{
         }, 3000);
     }
 
+    // Update "my sents" display
+    updateSentsDisplay();
+
 };
+
+// Load sents
+const sents_container = document.getElementById('sents_container');
+const no_sents = document.getElementById('no_sents');
+function updateSentsDisplay() {
+    
+    // Remove all sents
+    sents_container.innerHTML = '';
+    
+    // Get new ones
+    const sents = getSents();
+    
+    // Show "no sents" message ?
+    if (sents.length === 0){
+        no_sents.hidden = false;
+        return;
+    }
+    no_sents.hidden = true;
+
+    // Add each sents
+    sents.forEach(sent => {
+    
+        // Create html nodes
+        const div = document.createElement('div');
+        div.className = 'sent';
+        sents_container.appendChild(div);
+
+        const info = document.createElement('div');
+        div.appendChild(info);
+    
+        const filename = document.createElement('p');
+        filename.textContent = sent.filename;
+        info.appendChild(filename);
+    
+        const code = document.createElement('p');
+        code.textContent = sent.code;
+        info.appendChild(code);
+    
+        const expire = document.createElement('p');
+        expire.textContent = sent.expireIn;
+        div.appendChild(expire);
+       
+        // On click -> download
+        div.onclick = ()=>{
+            downloadFile(sent.code);
+        };
+
+    });
+
+}
+updateSentsDisplay()

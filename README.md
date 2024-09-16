@@ -14,3 +14,4 @@ Ce dépôt concerne exclusivement la partie frontend de l'application.
 - Nginx
 - Flask avec Gunicorn
 - HTML, CSS et JavaScript
+- js-cookie
